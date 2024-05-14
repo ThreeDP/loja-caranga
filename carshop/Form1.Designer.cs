@@ -1,6 +1,6 @@
 ﻿namespace carshop
 {
-    partial class Form1
+    partial class CadastroDeCarro
     {
         /// <summary>
         ///  Required designer variable.
@@ -47,13 +47,15 @@
             txbSituacao = new TextBox();
             lblSituacao = new Label();
             btnCadastrar = new Button();
-            txtOutputTest = new TextBox();
+            lblCadastroDeCarro = new Label();
+            label1 = new Label();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             SuspendLayout();
             // 
             // lblIDEmpresa
             // 
             lblIDEmpresa.AutoSize = true;
-            lblIDEmpresa.Location = new Point(12, 27);
+            lblIDEmpresa.Location = new Point(12, 85);
             lblIDEmpresa.Name = "lblIDEmpresa";
             lblIDEmpresa.Size = new Size(66, 15);
             lblIDEmpresa.TabIndex = 0;
@@ -61,22 +63,24 @@
             // 
             // txtIdEmpresa
             // 
-            txtIdEmpresa.Location = new Point(12, 45);
+            txtIdEmpresa.BackColor = Color.FromArgb(249, 230, 211);
+            txtIdEmpresa.Location = new Point(12, 103);
             txtIdEmpresa.Name = "txtIdEmpresa";
             txtIdEmpresa.Size = new Size(165, 23);
             txtIdEmpresa.TabIndex = 1;
             // 
             // txtRenavan
             // 
-            txtRenavan.Location = new Point(12, 96);
+            txtRenavan.BackColor = Color.FromArgb(249, 230, 211);
+            txtRenavan.Location = new Point(198, 103);
             txtRenavan.Name = "txtRenavan";
-            txtRenavan.Size = new Size(165, 23);
+            txtRenavan.Size = new Size(105, 23);
             txtRenavan.TabIndex = 3;
             // 
             // lblRenavan
             // 
             lblRenavan.AutoSize = true;
-            lblRenavan.Location = new Point(12, 78);
+            lblRenavan.Location = new Point(198, 85);
             lblRenavan.Name = "lblRenavan";
             lblRenavan.Size = new Size(52, 15);
             lblRenavan.TabIndex = 2;
@@ -84,15 +88,16 @@
             // 
             // txtPlaca
             // 
-            txtPlaca.Location = new Point(12, 153);
+            txtPlaca.BackColor = Color.FromArgb(249, 230, 211);
+            txtPlaca.Location = new Point(325, 103);
             txtPlaca.Name = "txtPlaca";
-            txtPlaca.Size = new Size(165, 23);
+            txtPlaca.Size = new Size(97, 23);
             txtPlaca.TabIndex = 5;
             // 
             // lblPlaca
             // 
             lblPlaca.AutoSize = true;
-            lblPlaca.Location = new Point(12, 135);
+            lblPlaca.Location = new Point(325, 85);
             lblPlaca.Name = "lblPlaca";
             lblPlaca.Size = new Size(35, 15);
             lblPlaca.TabIndex = 4;
@@ -100,15 +105,18 @@
             // 
             // txtMarca
             // 
-            txtMarca.Location = new Point(12, 206);
+            txtMarca.BackColor = Color.FromArgb(249, 230, 211);
+            txtMarca.Location = new Point(12, 193);
             txtMarca.Name = "txtMarca";
-            txtMarca.Size = new Size(165, 23);
+            txtMarca.Size = new Size(228, 23);
             txtMarca.TabIndex = 7;
             // 
             // lblMarca
             // 
             lblMarca.AutoSize = true;
-            lblMarca.Location = new Point(12, 188);
+            lblMarca.BackColor = Color.Transparent;
+            lblMarca.ForeColor = SystemColors.ButtonHighlight;
+            lblMarca.Location = new Point(12, 175);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(40, 15);
             lblMarca.TabIndex = 6;
@@ -116,7 +124,8 @@
             // 
             // txtModelo
             // 
-            txtModelo.Location = new Point(12, 263);
+            txtModelo.BackColor = Color.FromArgb(249, 230, 211);
+            txtModelo.Location = new Point(255, 193);
             txtModelo.Name = "txtModelo";
             txtModelo.Size = new Size(165, 23);
             txtModelo.TabIndex = 9;
@@ -124,7 +133,9 @@
             // lblModelo
             // 
             lblModelo.AutoSize = true;
-            lblModelo.Location = new Point(12, 245);
+            lblModelo.BackColor = Color.Transparent;
+            lblModelo.ForeColor = SystemColors.ButtonHighlight;
+            lblModelo.Location = new Point(255, 175);
             lblModelo.Name = "lblModelo";
             lblModelo.Size = new Size(48, 15);
             lblModelo.TabIndex = 8;
@@ -132,15 +143,18 @@
             // 
             // txtAnoModelo
             // 
-            txtAnoModelo.Location = new Point(12, 320);
+            txtAnoModelo.BackColor = Color.FromArgb(249, 230, 211);
+            txtAnoModelo.Location = new Point(12, 242);
             txtAnoModelo.Name = "txtAnoModelo";
-            txtAnoModelo.Size = new Size(165, 23);
+            txtAnoModelo.Size = new Size(122, 23);
             txtAnoModelo.TabIndex = 11;
             // 
             // lblAnoModelo
             // 
             lblAnoModelo.AutoSize = true;
-            lblAnoModelo.Location = new Point(12, 302);
+            lblAnoModelo.BackColor = Color.Transparent;
+            lblAnoModelo.ForeColor = SystemColors.ButtonHighlight;
+            lblAnoModelo.Location = new Point(12, 224);
             lblAnoModelo.Name = "lblAnoModelo";
             lblAnoModelo.Size = new Size(90, 15);
             lblAnoModelo.TabIndex = 10;
@@ -148,15 +162,18 @@
             // 
             // txbAnoFabricacao
             // 
-            txbAnoFabricacao.Location = new Point(12, 382);
+            txbAnoFabricacao.BackColor = Color.FromArgb(249, 230, 211);
+            txbAnoFabricacao.Location = new Point(151, 242);
             txbAnoFabricacao.Name = "txbAnoFabricacao";
-            txbAnoFabricacao.Size = new Size(165, 23);
+            txbAnoFabricacao.Size = new Size(110, 23);
             txbAnoFabricacao.TabIndex = 13;
             // 
             // lblAno_fabricacao
             // 
             lblAno_fabricacao.AutoSize = true;
-            lblAno_fabricacao.Location = new Point(12, 364);
+            lblAno_fabricacao.BackColor = Color.Transparent;
+            lblAno_fabricacao.ForeColor = SystemColors.ButtonHighlight;
+            lblAno_fabricacao.Location = new Point(151, 224);
             lblAno_fabricacao.Name = "lblAno_fabricacao";
             lblAno_fabricacao.Size = new Size(89, 15);
             lblAno_fabricacao.TabIndex = 12;
@@ -164,15 +181,19 @@
             // 
             // txtObservacao
             // 
-            txtObservacao.Location = new Point(12, 443);
+            txtObservacao.BackColor = Color.FromArgb(249, 230, 211);
+            txtObservacao.Location = new Point(12, 298);
+            txtObservacao.Multiline = true;
             txtObservacao.Name = "txtObservacao";
-            txtObservacao.Size = new Size(165, 23);
+            txtObservacao.Size = new Size(410, 135);
             txtObservacao.TabIndex = 15;
             // 
             // lblObservacao
             // 
             lblObservacao.AutoSize = true;
-            lblObservacao.Location = new Point(12, 425);
+            lblObservacao.BackColor = Color.Transparent;
+            lblObservacao.ForeColor = SystemColors.ButtonHighlight;
+            lblObservacao.Location = new Point(12, 280);
             lblObservacao.Name = "lblObservacao";
             lblObservacao.Size = new Size(69, 15);
             lblObservacao.TabIndex = 14;
@@ -180,15 +201,18 @@
             // 
             // txbSituacao
             // 
-            txbSituacao.Location = new Point(214, 122);
+            txbSituacao.BackColor = Color.FromArgb(249, 230, 211);
+            txbSituacao.Location = new Point(284, 242);
             txbSituacao.Name = "txbSituacao";
-            txbSituacao.Size = new Size(165, 23);
+            txbSituacao.Size = new Size(138, 23);
             txbSituacao.TabIndex = 21;
             // 
             // lblSituacao
             // 
             lblSituacao.AutoSize = true;
-            lblSituacao.Location = new Point(214, 96);
+            lblSituacao.BackColor = Color.Transparent;
+            lblSituacao.ForeColor = SystemColors.ButtonHighlight;
+            lblSituacao.Location = new Point(284, 224);
             lblSituacao.Name = "lblSituacao";
             lblSituacao.Size = new Size(52, 15);
             lblSituacao.TabIndex = 20;
@@ -196,29 +220,53 @@
             // 
             // btnCadastrar
             // 
-            btnCadastrar.Location = new Point(253, 245);
+            btnCadastrar.BackColor = Color.FromArgb(249, 230, 211);
+            btnCadastrar.Location = new Point(12, 452);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(75, 23);
+            btnCadastrar.Size = new Size(133, 35);
             btnCadastrar.TabIndex = 22;
             btnCadastrar.Text = "Cadastrar";
-            btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.UseVisualStyleBackColor = false;
             btnCadastrar.Click += btnCadastrar_Click;
             // 
-            // txtOutputTest
+            // lblCadastroDeCarro
             // 
-            txtOutputTest.Enabled = false;
-            txtOutputTest.Location = new Point(464, 122);
-            txtOutputTest.Multiline = true;
-            txtOutputTest.Name = "txtOutputTest";
-            txtOutputTest.Size = new Size(244, 331);
-            txtOutputTest.TabIndex = 23;
+            lblCadastroDeCarro.AutoSize = true;
+            lblCadastroDeCarro.BackColor = Color.Transparent;
+            lblCadastroDeCarro.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCadastroDeCarro.ForeColor = SystemColors.ButtonHighlight;
+            lblCadastroDeCarro.Location = new Point(12, 27);
+            lblCadastroDeCarro.Name = "lblCadastroDeCarro";
+            lblCadastroDeCarro.Size = new Size(249, 37);
+            lblCadastroDeCarro.TabIndex = 23;
+            lblCadastroDeCarro.Text = "Cadastro de Carro";
             // 
-            // Form1
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(12, 146);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 15);
+            label1.TabIndex = 24;
+            label1.Text = "Informações do Carro";
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
+            // 
+            // CadastroDeCarro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(720, 452);
-            Controls.Add(txtOutputTest);
+            BackColor = Color.FromArgb(30, 30, 30);
+            ClientSize = new Size(442, 512);
+            Controls.Add(label1);
+            Controls.Add(lblCadastroDeCarro);
             Controls.Add(btnCadastrar);
             Controls.Add(txbSituacao);
             Controls.Add(lblSituacao);
@@ -238,8 +286,9 @@
             Controls.Add(lblRenavan);
             Controls.Add(txtIdEmpresa);
             Controls.Add(lblIDEmpresa);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "CadastroDeCarro";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cadastro de Carro";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -265,6 +314,8 @@
         private TextBox txbSituacao;
         private Label lblSituacao;
         private Button btnCadastrar;
-        private TextBox txtOutputTest;
+        private Label lblCadastroDeCarro;
+        private Label label1;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

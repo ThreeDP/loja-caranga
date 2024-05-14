@@ -1,23 +1,17 @@
+using MySql.Data.MySqlClient;
 using System;
 using System.Data.SqlClient;
 
 namespace carshop
 {
-    public partial class Form1 : Form
+    public partial class CadastroDeCarro : Form
     {
-        List<Carro> carros;
-
-        public Form1()
+        MySqlConnection cnxSql;
+        public CadastroDeCarro()
         {
             InitializeComponent();
-            this.carros = new List<Carro>();
-        }
-
-        public void printNovoCarro(Carro c)
-        {
-            txtOutputTest.Text += $"Loja: {c.id_loja}\r\n";
-            txtOutputTest.Text += $"Loja: {c.renavan}\r\n";
-            txtOutputTest.Text += $"Loja: {c.placa}\r\n\r\n";
+            string connectionString = "Server=localhost;Port=3306;Database=loja_de_carros;Uid=root;";
+            this.cnxSql = new MySqlConnection(connectionString);
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -44,11 +38,11 @@ namespace carshop
                     observacao,
                     situacao
                     );
-                printNovoCarro(carro);
-                carros.Add(carro);
-            } catch (Exception ex)
+                carro.CreateCar(this.cnxSql);
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show( ex.Message );
+                MessageBox.Show(ex.Message);
                 return;
             }
         }
