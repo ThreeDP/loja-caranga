@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace carshop
 {
@@ -42,7 +43,7 @@ namespace carshop
         public void CreateCar(MySqlConnection cnn)
         {
             var cmd = cnn.CreateCommand();
-            cmd.CommandText = "INSERT INTO carros(id_loja, renavan, placa, marca, modelo, ano_modelo, ano_fabricacao, observacao, situacao) " +
+            cmd.CommandText = "INSERT INTO carros(renavan, placa, marca_id, tipo_id, ano_fabricacao, descrição, situacao) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             cmd.Parameters.AddWithValue("@id_loja", this.id_loja);
             cmd.Parameters.AddWithValue("@renavan", this.renavan);
@@ -56,6 +57,76 @@ namespace carshop
             cnn.Open();
             cmd.ExecuteNonQuery();
             cnn.Close();
+        }
+
+        static public List<string> GetListaModelos(MySqlConnection cnn)
+        {
+            List<string> lista = new List<string>();
+            var cmd = cnn.CreateCommand();
+            cmd.CommandText = "SELECT modelo, ano_modelo FROM modelos";
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string? modelo = Convert.ToString(reader["modelo"]);
+                    string? ano_modelo = Convert.ToString(reader["ano_modelo"]);
+                    if (modelo != null && ano_modelo != null)
+                    {
+                        lista.Add(modelo + " | " + ano_modelo);
+                    }
+                }
+            }
+
+            cnn.Close();
+            return lista;
+        }
+
+        static public List<string> GetListaMarcas(MySqlConnection cnn)
+        {
+            List<string> lista = new List<string>();
+            var cmd = cnn.CreateCommand();
+            cmd.CommandText = "SELECT marca FROM marcas";
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string? marca = Convert.ToString(reader["marca"]);
+                    if (marca != null)
+                    {
+                        lista.Add(marca);
+                    }
+                }
+            }
+
+            cnn.Close();
+            return lista;
+        }
+
+        static public List<string> GetListaTipos(MySqlConnection cnn)
+        {
+            List<string> lista = new List<string>();
+            var cmd = cnn.CreateCommand();
+            cmd.CommandText = "SELECT tipo FROM tipos_de_veiculos";
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string? tipo = Convert.ToString(reader["tipo"]);
+                    if (tipo != null)
+                    {
+                        lista.Add(tipo);
+                    }
+                }
+            }
+
+            cnn.Close();
+            return lista;
         }
 
     }

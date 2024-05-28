@@ -1,17 +1,57 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 namespace carshop
 {
     public partial class CadastroDeCarro : Form
     {
-        MySqlConnection cnxSql;
+        private void preencherModelos()
+        {
+            MySqlConnection? cnn = Mysql.GetMySqlConnection();
+            if (cnn != null)
+            {
+                List<string> modelos = Carro.GetListaModelos(cnn);
+                foreach(var modelo in modelos)
+                {
+                    cbListaModelo.Items.Add(modelo.ToString());
+                }
+            }
+        }
+
+        private void preencherMarcas()
+        {
+            MySqlConnection? cnn = Mysql.GetMySqlConnection();
+            if (cnn != null)
+            {
+                List<string> marcas = Carro.GetListaMarcas(cnn);
+                foreach (var marca in marcas)
+                {
+                    cbListaMarca.Items.Add(marca.ToString());
+                }
+            }
+        }
+
+        private void preencherTipos()
+        {
+            MySqlConnection? conn = Mysql.GetMySqlConnection();
+            if (conn != null)
+            {
+                List<string> tipos = Carro.GetListaTipos(conn);
+                foreach (var tipo in tipos)
+                {
+                    cbListaTipoVeiculo.Items.Add(tipo.ToString());
+                }
+            }
+        }
+
         public CadastroDeCarro()
         {
             InitializeComponent();
-            string connectionString = "Server=localhost;Port=3306;Database=loja_de_carros;Uid=root;";
-            this.cnxSql = new MySqlConnection(connectionString);
+            this.preencherMarcas();
+            this.preencherModelos();
+            this.preencherTipos();
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -19,9 +59,9 @@ namespace carshop
             string id_loja = txtIdEmpresa.Text;
             string renavan = txtRenavan.Text;
             string placa = txtPlaca.Text;
-            string marca = txtMarca.Text;
-            string modelo = txtModelo.Text;
-            string ano_modelo = txtAnoModelo.Text;
+            string marca = cbListaMarca.Text;
+            string modelo = cbListaModelo.Text;
+            string ano_modelo = cbListaTipoVeiculo.Text;
             string ano_fabricacao = txbAnoFabricacao.Text;
             string observacao = txtObservacao.Text;
             string situacao = txbSituacao.Text;
@@ -38,7 +78,11 @@ namespace carshop
                     observacao,
                     situacao
                     );
-                carro.CreateCar(this.cnxSql);
+                MySqlConnection? cnn = Mysql.GetMySqlConnection();
+                if (cnn != null)
+                {
+                    carro.CreateCar(cnn);
+                }
             }
             catch (Exception ex)
             {
@@ -46,5 +90,6 @@ namespace carshop
                 return;
             }
         }
+
     }
 }

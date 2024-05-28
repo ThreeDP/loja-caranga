@@ -31,5 +31,28 @@ namespace carshop
             aux.TrySetApartmentState(ApartmentState.STA);
             aux.Start();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void abrirMenuCliente(object obj)
+        {
+            Application.Run(new MenuCliente());
+        }
+
+        private void btnMenuCliente_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            aux = new Thread(abrirMenuCliente);
+            aux.TrySetApartmentState(ApartmentState.STA);
+            aux.Start();
+        }
     }
 }
